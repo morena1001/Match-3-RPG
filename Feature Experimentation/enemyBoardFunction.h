@@ -5,21 +5,19 @@
 #include <string>
 #include <time.h>
 #include "piece.h"
-#include "enemyBoardFunction.h"
 
 using namespace std;
 
-void generateNewPieces(piece board[5][7]);
-// void executeMoves(piece board[5][7]);
-void printBoard(piece board[5][7]);
-void matchChecking(piece board[5][7]);
-void pieceShuffle(piece board[5][7]);
-void getMoves(piece board[5][7]);
-void checkMatchAfterMove(piece board[5][7], int x, int y);
-void removeMatched(piece board[5][7]);
+void generateNewPieces_e(piece board[5][7]);
+// void executeMoves_e(piece board[5][7]);
+void matchChecking_e(piece board[5][7]);
+void pieceShuffle_e(piece board[5][7]);
+void getMoves_e(piece board[5][7]);
+void checkMatchAfterMove_e(piece board[5][7], int x, int y);
+void removeMatched_e(piece board[5][7]);
 
 
-void generateNewPieces(piece board[5][7]) {
+void generateNewPieces_e(piece board[5][7]) {
     srand(time(NULL));
     // Generate a new piece for the empty tiles
     for(int i = 0; i < 5; i++) {
@@ -31,22 +29,7 @@ void generateNewPieces(piece board[5][7]) {
     }
 }
 
-// void executeMoves(piece board[5][7]) {
-    
-// }
-
-void printBoard(piece board[5][7]) {
-    cout << " Y 1 2 3 4 5 6 7" << endl << "X"<< endl;
-    for(int i = 0; i < 5; i++) {
-        cout << i + 1 << "  ";
-        for(int j = 0; j < 7; j++) {
-            cout << board[i][j].num << " ";
-        }
-        cout << endl;
-    }
-}
-
-void matchChecking(piece board[5][7]) {
+void matchChecking_e(piece board[5][7]) {
     srand(time(NULL));
 
     bool leftPieces;
@@ -75,7 +58,7 @@ void matchChecking(piece board[5][7]) {
     }
 }
 
-void pieceShuffle(piece board[5][7]) {
+void pieceShuffle_e(piece board[5][7]) {
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 7; j++) {
             if (board[i + 1][j].num == 0 && board[i][j].num != 0) {
@@ -98,14 +81,14 @@ void pieceShuffle(piece board[5][7]) {
     }
 
     cout << endl;
-    printBoard(board);
+    // printBoard(board);
     cout << endl;
-    generateNewPieces(board);
-    matchChecking(board);
+    generateNewPieces_e(board);
+    matchChecking_e(board);
     printBoard(board);
 }
 
-void getMoves(piece board[5][7]) {
+void getMoves_e(piece board[5][7]) {
     string xPosition, yPosition, direction = "";
     int xCoordinate, yCoordinate;
     int movesLeft = 3;
@@ -157,8 +140,8 @@ void getMoves(piece board[5][7]) {
                 board[xCoordinate][yCoordinate] = board[xCoordinate - 1][yCoordinate];
                 board[xCoordinate - 1][yCoordinate] = temp;
 
-                checkMatchAfterMove(board, xCoordinate, yCoordinate);
-                checkMatchAfterMove(board, xCoordinate - 1, yCoordinate);
+                checkMatchAfterMove_e(board, xCoordinate, yCoordinate);
+                checkMatchAfterMove_e(board, xCoordinate - 1, yCoordinate);
             }
 
             else if (direction == "down") {
@@ -170,8 +153,8 @@ void getMoves(piece board[5][7]) {
                 board[xCoordinate][yCoordinate] = board[xCoordinate + 1][yCoordinate];
                 board[xCoordinate + 1][yCoordinate] = temp;
 
-                checkMatchAfterMove(board, xCoordinate, yCoordinate);
-                checkMatchAfterMove(board, xCoordinate + 1, yCoordinate);
+                checkMatchAfterMove_e(board, xCoordinate, yCoordinate);
+                checkMatchAfterMove_e(board, xCoordinate + 1, yCoordinate);
             }
 
             else if (direction == "left") {
@@ -183,8 +166,8 @@ void getMoves(piece board[5][7]) {
                 board[xCoordinate][yCoordinate] = board[xCoordinate][yCoordinate - 1];
                 board[xCoordinate][yCoordinate - 1] = temp;
 
-                checkMatchAfterMove(board, xCoordinate, yCoordinate);
-                checkMatchAfterMove(board, xCoordinate, yCoordinate - 1);
+                checkMatchAfterMove_e(board, xCoordinate, yCoordinate);
+                checkMatchAfterMove_e(board, xCoordinate, yCoordinate - 1);
             }
 
             else if (direction == "right") {
@@ -196,8 +179,8 @@ void getMoves(piece board[5][7]) {
                 board[xCoordinate][yCoordinate] = board[xCoordinate][yCoordinate + 1];
                 board[xCoordinate][yCoordinate + 1] = temp;
 
-                checkMatchAfterMove(board, xCoordinate, yCoordinate);
-                checkMatchAfterMove(board, xCoordinate, yCoordinate + 1);
+                checkMatchAfterMove_e(board, xCoordinate, yCoordinate);
+                checkMatchAfterMove_e(board, xCoordinate, yCoordinate + 1);
             }
 
             else if (direction == "up_left") {
@@ -209,8 +192,8 @@ void getMoves(piece board[5][7]) {
                 board[xCoordinate][yCoordinate] = board[xCoordinate - 1][yCoordinate - 1];
                 board[xCoordinate - 1][yCoordinate - 1] = temp;
 
-                checkMatchAfterMove(board, xCoordinate, yCoordinate);
-                checkMatchAfterMove(board, xCoordinate - 1, yCoordinate - 1);
+                checkMatchAfterMove_e(board, xCoordinate, yCoordinate);
+                checkMatchAfterMove_e(board, xCoordinate - 1, yCoordinate - 1);
             }
 
             else if (direction == "up_right") {
@@ -222,8 +205,8 @@ void getMoves(piece board[5][7]) {
                 board[xCoordinate][yCoordinate] = board[xCoordinate - 1][yCoordinate + 1];
                 board[xCoordinate - 1][yCoordinate + 1] = temp;
 
-                checkMatchAfterMove(board, xCoordinate, yCoordinate);
-                checkMatchAfterMove(board, xCoordinate - 1, yCoordinate + 1);
+                checkMatchAfterMove_e(board, xCoordinate, yCoordinate);
+                checkMatchAfterMove_e(board, xCoordinate - 1, yCoordinate + 1);
             }
 
             else if (direction == "down_left") {
@@ -235,8 +218,8 @@ void getMoves(piece board[5][7]) {
                 board[xCoordinate][yCoordinate] = board[xCoordinate + 1][yCoordinate - 1];
                 board[xCoordinate + 1][yCoordinate - 1] = temp;
 
-                checkMatchAfterMove(board, xCoordinate, yCoordinate);
-                checkMatchAfterMove(board, xCoordinate + 1, yCoordinate - 1);
+                checkMatchAfterMove_e(board, xCoordinate, yCoordinate);
+                checkMatchAfterMove_e(board, xCoordinate + 1, yCoordinate - 1);
             }
 
             else if (direction == "down_right") {
@@ -248,22 +231,22 @@ void getMoves(piece board[5][7]) {
                 board[xCoordinate][yCoordinate] = board[xCoordinate + 1][yCoordinate + 1];
                 board[xCoordinate + 1][yCoordinate + 1] = temp;
 
-                checkMatchAfterMove(board, xCoordinate, yCoordinate);
-                checkMatchAfterMove(board, xCoordinate + 1, yCoordinate + 1);
+                checkMatchAfterMove_e(board, xCoordinate, yCoordinate);
+                checkMatchAfterMove_e(board, xCoordinate + 1, yCoordinate + 1);
             }
 
 
             movesLeft--;
         }
 
-        printBoard(board);
+        // printBoard(board);
     } while (movesLeft > 0);
 
-    removeMatched(board);
-    pieceShuffle(board);
+    removeMatched_e(board);
+    pieceShuffle_e(board);
 }
 
-void checkMatchAfterMove(piece board[5][7], int x, int y) {
+void checkMatchAfterMove_e(piece board[5][7], int x, int y) {
     // Check left pieces
     if (y > 1 && board[x][y].num == board[x][y - 1].num && board[x][y - 1].num == board[x][y - 2].num) {
         board[x][y].matched = board[x][y - 1].matched = board[x][y - 2].matched = true;
@@ -290,7 +273,7 @@ void checkMatchAfterMove(piece board[5][7], int x, int y) {
     }
 }
 
-void removeMatched(piece board[5][7]) {
+void removeMatched_e(piece board[5][7]) {
     string matched = "";
 
     for (int i = 0; i < 5; i++) {
@@ -305,5 +288,5 @@ void removeMatched(piece board[5][7]) {
         }
     }
     cout << endl << matched << endl;
-    printBoard(board);
+    // printBoard_e(board);
 }
